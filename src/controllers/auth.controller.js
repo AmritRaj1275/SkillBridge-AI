@@ -85,10 +85,19 @@ async function loginUserController(reg, res) {
         {expiresIn: "1d"}
     )
 
-    
+    res.cookie("token", token)
+    res.status(200).json({
+        message: "User loggedIn successfully",
+        user: {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        }
+    })
 }
 
 
 module.exports = {
-    registerUserController
+    registerUserController,
+    loginUserController
 }
